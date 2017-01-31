@@ -31,3 +31,7 @@ export const TodoList = (props) => {
     )
 }
 */
+//validation
+TodoList.propTypes = {
+  todos: React.PropTypes.array.isRequired
+}
