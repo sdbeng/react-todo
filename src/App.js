@@ -12,7 +12,11 @@ import {TodoForm, TodoList} from './components/todo'
 
 //OR just do it the traditional way of importing the component from where it's coming from
 // import {TodoList} from './components/todo/TodoList'
-//**My ONLY question ** is how this index.js filename can interfere when preparing for routing and production
+//**My ONLY question ** is how this index.js filename can interfere when preparing
+//for routing and production
+
+import {addTodo, generateId} from './lib/todoHelpers'
+
 
 class App extends Component {
   constructor(props){
@@ -31,7 +35,28 @@ class App extends Component {
     this.click100 = this.click100.bind(this)
     // for handleInputChange bind
     this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
+  handleSubmit(evt){
+    evt.preventDefault()
+
+    const newId = generateId()
+
+    const newTodo = {
+      id: newId,
+      name: this.state.currentTodo,
+      isComplete: false
+    }
+    //add it to the list of existing todos
+    const updatedTodos = addTodo(this.state.todos, newTodo)
+    //then update our application state with setState
+    this.setState({
+      todos: updatedTodos,
+      // clear the form
+      currentTodo: ''
+    })
+  }
+
   handleInputChange(evt){
     this.setState({
       currentTodo: evt.target.value
@@ -83,7 +108,8 @@ class App extends Component {
           {/* insert TodoForm tag: create attributes to pass to child component */}
           <TodoForm
             handleInputChange={this.handleInputChange}
-            currentTodo={this.state.currentTodo} />
+            currentTodo={this.state.currentTodo}
+            handleSubmit={this.handleSubmit} />
 
             {/* refactoring: grab this TodoList iteration and put it in its own component */}
             {/* create an attribute named todos to pass to it children component */}
