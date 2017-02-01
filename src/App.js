@@ -36,6 +36,7 @@ class App extends Component {
     // for handleInputChange bind
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleEmptySubmit = this.handleEmptySubmit.bind(this)
   }
   handleSubmit(evt){
     evt.preventDefault()
@@ -53,7 +54,16 @@ class App extends Component {
     this.setState({
       todos: updatedTodos,
       // clear the form
-      currentTodo: ''
+      currentTodo: '',
+      //update the errorMessage to an empty string when there is a valid entry
+      errorMessage: ''
+    })
+  }
+  //this func is to precent empty form submissions
+  handleEmptySubmit(evt){
+    evt.preventDefault()
+    this.setState({
+      errorMessage: 'Please supply a todo name item in the list.'
     })
   }
 
@@ -63,6 +73,7 @@ class App extends Component {
     })
   }
 
+//refactor later to when i have multiple states to handle
 // componentDidMount(){
 //   click().then(response => {
 //     this.setState({
@@ -88,6 +99,8 @@ class App extends Component {
   }
   render() {
     // console.log(this.state.counter);
+    //define a const called submitHandler to handle the form submission validations
+    const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
 
     return (
       <div className="App">
@@ -105,11 +118,18 @@ class App extends Component {
         {/* todolist */}
         <div className="Todo-App">
           <h2>Todo List</h2>
+          {/* display an error message when trying to submit empty todo item*/}
+          {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
+
           {/* insert TodoForm tag: create attributes to pass to child component */}
           <TodoForm
             handleInputChange={this.handleInputChange}
             currentTodo={this.state.currentTodo}
-            handleSubmit={this.handleSubmit} />
+            // now, with handle validations
+            handleSubmit={submitHandler}
+            //previously without form validations
+            // handleSubmit={this.handleSubmit}
+          />
 
             {/* refactoring: grab this TodoList iteration and put it in its own component */}
             {/* create an attribute named todos to pass to it children component */}
