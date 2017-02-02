@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Button from './button'
+import {Navbar, Grid, NavItem, NavDropdown, MenuItem, Nav} from 'react-bootstrap'
+
+
 //See Note
 // import {TodoForm} from './components/todo/TodoForm'
 
@@ -103,39 +105,66 @@ class App extends Component {
     const submitHandler = this.state.currentTodo ? this.handleSubmit : this.handleEmptySubmit
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Todo</h2>
-        </div>
-        <p className="App-intro">
+      <div>
+        <Navbar inverse collapseOnSelect>
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a href="/">React Rev3</a>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav>
+                <NavItem eventKey={1} href="#">Link</NavItem>
+                <NavItem eventKey={2} href="#">Link</NavItem>
+                <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+                  <MenuItem eventKey={3.1}>Action</MenuItem>
+                  <MenuItem eventKey={3.2}>Another action</MenuItem>
+                  <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                  <MenuItem divider />
+                  <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                </NavDropdown>
+              </Nav>
+              <Nav pullRight>
+                <NavItem eventKey={1} href="#">Link Right</NavItem>
+                <NavItem eventKey={2} href="#">Link Right</NavItem>
+              </Nav>
+            </Navbar.Collapse>
+
+        </Navbar>
+        <Grid>
           Count: {this.state.counter}
-        </p>
+
         <Button clickHandler={this.click} text="add 1"/>
         <Button clickHandler={this.click10} text="add 10"/>
         <Button clickHandler={this.click100} text="add 100"/>
+        </Grid>
+
 
         {/* todolist */}
-        <div className="Todo-App">
-          <h2>Todo List</h2>
-          {/* display an error message when trying to submit empty todo item*/}
-          {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
+        <Grid>
+          <div className="Todo-App">
+            <h2>Todo List</h2>
+            {/* display an error message when trying to submit empty todo item*/}
+            {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
 
-          {/* insert TodoForm tag: create attributes to pass to child component */}
-          <TodoForm
-            handleInputChange={this.handleInputChange}
-            currentTodo={this.state.currentTodo}
-            // now, with handle validations
-            handleSubmit={submitHandler}
-            //previously without form validations
-            // handleSubmit={this.handleSubmit}
-          />
+            {/* insert TodoForm tag: create attributes to pass to child component */}
+            <TodoForm
+              handleInputChange={this.handleInputChange}
+              currentTodo={this.state.currentTodo}
+              // now, with handle validations
+              handleSubmit={submitHandler}
+              //previously without form validations
+              // handleSubmit={this.handleSubmit}
+            />
 
-            {/* refactoring: grab this TodoList iteration and put it in its own component */}
-            {/* create an attribute named todos to pass to it children component */}
-            <TodoList todos={this.state.todos}/>
+              {/* refactoring: grab this TodoList iteration and put it in its own component */}
+              {/* create an attribute named todos to pass to it children component */}
+              <TodoList todos={this.state.todos}/>
 
-        </div>
+          </div>
+        </Grid>
+
 
       </div>
     );
