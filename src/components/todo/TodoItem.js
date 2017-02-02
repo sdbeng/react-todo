@@ -1,10 +1,15 @@
 import React from 'react'
+import {Checkbox} from 'react-bootstrap'
 
 export const TodoItem = (props) => {
   return (
     <li>
-      <input type="checkbox"
-        defaultChecked={props.isComplete}/>{props.name}
+      <Checkbox defaultChecked={props.isComplete}>
+        {props.name}
+      </Checkbox>
+
+      {/* <input type="checkbox"
+        defaultChecked={props.isComplete}/>{props.name} */}
     </li>
   )
 }

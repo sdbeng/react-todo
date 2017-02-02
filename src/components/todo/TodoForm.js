@@ -1,11 +1,23 @@
 import React from 'react'
+import {FormGroup, FormControl} from 'react-bootstrap'
+
 // plain stateless func component
 export const TodoForm = (props) => (
   // bring over the form markup from App.js to here
   <form onSubmit={props.handleSubmit}>
-    <input type="text"
-      onChange={props.handleInputChange}
-      value={props.currentTodo}/>
+    <FormGroup>
+      {/* <ControlLabel>Working example with validation</ControlLabel> */}
+      <FormControl
+        type="text"
+        value={props.currentTodo}
+        placeholder="Enter text"
+        onChange={props.handleInputChange}
+      />
+      {/* <input type="text"
+        onChange={props.handleInputChange}
+        value={props.currentTodo}/> */}
+    </FormGroup>
+
   </form>
 )
 // validation
