@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './button'
-import {Navbar, Grid, NavItem, NavDropdown, MenuItem, Nav} from 'react-bootstrap'
+import MyButton from './button'
+import {
+  Navbar, Grid, NavItem, NavDropdown, MenuItem, Nav, PageHeader,ButtonGroup
+} from 'react-bootstrap'
 
 
 //See Note
@@ -133,18 +135,25 @@ class App extends Component {
 
         </Navbar>
         <Grid>
-          Count: {this.state.counter}
+          <PageHeader>Counters</PageHeader>
+          <h3>{this.state.counter}</h3>
 
-        <Button clickHandler={this.click} text="add 1"/>
-        <Button clickHandler={this.click10} text="add 10"/>
-        <Button clickHandler={this.click100} text="add 100"/>
+          <ButtonGroup>
+
+              <MyButton clickHandler={this.click} text="add 1"/>
+              <MyButton clickHandler={this.click10} text="add 10"/>
+              <MyButton clickHandler={this.click100} text="add 100"/>
+
+          </ButtonGroup>
+
         </Grid>
 
 
         {/* todolist */}
         <Grid>
           <div className="Todo-App">
-            <h2>Todo List</h2>
+            <PageHeader>My Todo List <small>v.3.7</small></PageHeader>
+
             {/* display an error message when trying to submit empty todo item*/}
             {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
 
