@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MyButton from './button'
-import {loadTodos} from './lib/todoService'
+import {loadTodos, createTodo} from './lib/todoService'
 import {
   Navbar, Grid, NavItem, NavDropdown, MenuItem, Nav, PageHeader,ButtonGroup
 } from 'react-bootstrap'
@@ -64,6 +64,9 @@ class App extends Component {
       //update the errorMessage to an empty string when there is a valid entry
       errorMessage: ''
     })
+    //add createTodo method to save data to server
+    createTodo(newTodo)
+      .then(() => console.log('Todo added'))
   }
   //this func is to precent empty form submissions
   handleEmptySubmit(evt){
