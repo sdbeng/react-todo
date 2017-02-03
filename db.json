@@ -1,0 +1,24 @@
+{
+  "todos":[
+    {
+      "id":1,
+      "name": "Go to store",
+      "isComplete": false
+    },
+    {
+      "id":2,
+      "name": "Work on React project v.1.7",
+      "isComplete": false
+    },
+    {
+      "id":3,
+      "name": "Deploy dev web application",
+      "isComplete": false
+    },
+    {
+      "id":4,
+      "name": "Test web app before going into production",
+      "isComplete": false
+    }
+  ]
+}

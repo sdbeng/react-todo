@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MyButton from './button'
+import {loadTodos} from './lib/todoService'
 import {
   Navbar, Grid, NavItem, NavDropdown, MenuItem, Nav, PageHeader,ButtonGroup
 } from 'react-bootstrap'
@@ -27,11 +28,7 @@ class App extends Component {
     super(props)
     this.state = {
       counter: 0,
-      todos: [
-        {id: 1, name: 'Go to the store', isComplete: true},
-        {id: 2, name: 'Read React api', isComplete: false},
-        {id: 3, name: 'Build React app', isComplete: false}
-      ],
+      todos: [],
       currentTodo: ''
     }
     this.click = this.click.bind(this)
@@ -41,6 +38,11 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEmptySubmit = this.handleEmptySubmit.bind(this)
+  }
+
+  componentDidMount(){
+    loadTodos()
+    .then(todos => this.setState({todos}))
   }
   handleSubmit(evt){
     evt.preventDefault()
@@ -111,25 +113,25 @@ class App extends Component {
         <Navbar inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/">React Rev3</a>
+                <a href="/">My React</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <NavItem eventKey={1} href="#">Link</NavItem>
-                <NavItem eventKey={2} href="#">Link</NavItem>
+                <NavItem eventKey={1} href="#">CV</NavItem>
+                <NavItem eventKey={2} href="#">Projects</NavItem>
                 <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                  <MenuItem eventKey={3.1}>Action</MenuItem>
-                  <MenuItem eventKey={3.2}>Another action</MenuItem>
-                  <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                  <MenuItem eventKey={3.1}>Node Backend1</MenuItem>
+                  <MenuItem eventKey={3.2}>Firebase Backend</MenuItem>
+                  <MenuItem eventKey={3.3}>Node Backend-MongoDB</MenuItem>
                   <MenuItem divider />
-                  <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                  <MenuItem eventKey={3.3}>React server</MenuItem>
                 </NavDropdown>
               </Nav>
               <Nav pullRight>
-                <NavItem eventKey={1} href="#">Link Right</NavItem>
-                <NavItem eventKey={2} href="#">Link Right</NavItem>
+                <NavItem eventKey={1} href="#">Login</NavItem>
+                <NavItem eventKey={2} href="#">About</NavItem>
               </Nav>
             </Navbar.Collapse>
 
