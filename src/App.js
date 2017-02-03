@@ -66,8 +66,18 @@ class App extends Component {
     })
     //add createTodo method to save data to server
     createTodo(newTodo)
-      .then(() => console.log('Todo added'))
+      // .then(() => console.log('Todo added'))
+      // .then(() => this.setState({message: 'Todo added'}))
+      //call the showTempMessage 
+      .then(() => this.showTempMessage('Todo added'))
   }
+
+  //make temporary message
+  showTempMessage(msg){
+    this.setState({message: msg})
+    setTimeout(() => this.setState({message: ''}), 2500)
+  }
+
   //this func is to precent empty form submissions
   handleEmptySubmit(evt){
     evt.preventDefault()
@@ -161,6 +171,7 @@ class App extends Component {
 
             {/* display an error message when trying to submit empty todo item*/}
             {this.state.errorMessage && <span className='error'>{this.state.errorMessage}</span>}
+            {this.state.message && <span className='success'>{this.state.message}</span>}
 
             {/* insert TodoForm tag: create attributes to pass to child component */}
             <TodoForm
