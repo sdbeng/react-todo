@@ -34,6 +34,7 @@ class App extends Component {
     this.click = this.click.bind(this)
     this.click10 = this.click10.bind(this)
     this.click100 = this.click100.bind(this)
+    this.decrement = this.decrement.bind(this)
     // for handleInputChange bind
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -68,7 +69,7 @@ class App extends Component {
     createTodo(newTodo)
       // .then(() => console.log('Todo added'))
       // .then(() => this.setState({message: 'Todo added'}))
-      //call the showTempMessage 
+      //call the showTempMessage
       .then(() => this.showTempMessage('Todo added'))
   }
 
@@ -105,6 +106,11 @@ class App extends Component {
     this.setState({
       counter: this.state.counter + 1
     })
+  }
+  decrement(){
+    this.setState({
+      counter: this.state.counter - 1
+    }, () => console.log("decremented 1"))
   }
   click10(){
     this.setState({
@@ -155,10 +161,13 @@ class App extends Component {
 
           <ButtonGroup>
 
-              <MyButton clickHandler={this.click} text="add 1"/>
-              <MyButton clickHandler={this.click10} text="add 10"/>
-              <MyButton clickHandler={this.click100} text="add 100"/>
+              <MyButton clickHandler={this.click} text="+1"/>
+              <MyButton clickHandler={this.click10} text="+10"/>
+              <MyButton clickHandler={this.click100} text="+100"/>
 
+          </ButtonGroup>
+          <ButtonGroup>
+            <MyButton clickHandler={this.decrement} text="-1"/>
           </ButtonGroup>
 
         </Grid>

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Go to store",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 2,
@@ -33,6 +33,16 @@
     {
       "id": 68460,
       "name": "drop off kids",
+      "isComplete": false
+    },
+    {
+      "id": 11649,
+      "name": "eat breakfast",
+      "isComplete": false
+    },
+    {
+      "id": 22066,
+      "name": "dede",
       "isComplete": false
     }
   ]
