@@ -6,6 +6,16 @@ import {
   Navbar, Grid, NavItem, NavDropdown, MenuItem, Nav, PageHeader,ButtonGroup
 } from 'react-bootstrap'
 
+import {BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom'
+
+// import Home from './components/Home'
+import Resume from './components/Resume'
+import Projects from './components/Projects'
+import NotFound404 from './components/NotFound404'
 
 //See Note
 // import {TodoForm} from './components/todo/TodoForm'
@@ -39,6 +49,7 @@ class App extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEmptySubmit = this.handleEmptySubmit.bind(this)
+
   }
 
   componentDidMount(){
@@ -122,6 +133,7 @@ class App extends Component {
       counter: this.state.counter + 100
     })
   }
+
   render() {
     // console.log(this.state.counter);
     //define a const called submitHandler to handle the form submission validations
@@ -129,32 +141,26 @@ class App extends Component {
 
     return (
       <div>
-        <Navbar inverse collapseOnSelect>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <a href="/">My React</a>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-            <Navbar.Collapse>
-              <Nav>
-                <NavItem eventKey={1} href="#">CV</NavItem>
-                <NavItem eventKey={2} href="#">Projects</NavItem>
-                <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                  <MenuItem eventKey={3.1}>Node Backend1</MenuItem>
-                  <MenuItem eventKey={3.2}>Firebase Backend</MenuItem>
-                  <MenuItem eventKey={3.3}>Node Backend-MongoDB</MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={3.3}>React server</MenuItem>
-                </NavDropdown>
-              </Nav>
-              <Nav pullRight>
-                <NavItem eventKey={1} href="#">Login</NavItem>
-                <NavItem eventKey={2} href="#">About</NavItem>
-              </Nav>
-            </Navbar.Collapse>
+      <Router>
+        <div>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/resume">Resume</Link></li>
+            <li><Link to="/projects">Projects</Link></li>
+          </ul>
+          <hr/>
 
-        </Navbar>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/resume" component={Resume}/>
+          <Route path="/projects" component={Projects}/>
+          <Route component={NotFound404} />
+        </Switch>
+
+        </div>
+      </Router>
+
+      <div>
         <Grid>
           <PageHeader>Counters</PageHeader>
           <h3>{this.state.counter}</h3>
@@ -201,8 +207,13 @@ class App extends Component {
 
 
       </div>
+      </div>
     );
   }
 }
+
+const Home = () => (
+    <div><h2>Home page</h2></div>
+)
 
 export default App;
