@@ -15,6 +15,7 @@ import {BrowserRouter as Router,
 // import Home from './components/Home'
 import Resume from './components/Resume'
 import Projects from './components/Projects'
+import Explore from './components/Explore'
 import NotFound404 from './components/NotFound404'
 
 //See Note
@@ -147,6 +148,7 @@ class App extends Component {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/resume">Resume</Link></li>
             <li><Link to="/projects">Projects</Link></li>
+            <li><Link to="/explore">Explore</Link></li>
           </ul>
           <hr/>
 
@@ -154,6 +156,7 @@ class App extends Component {
           <Route exact path="/" component={Home}/>
           <Route path="/resume" component={Resume}/>
           <Route path="/projects" component={Projects}/>
+          <Route path="/explore" component={Explore}/>
           <Route component={NotFound404} />
         </Switch>
 
