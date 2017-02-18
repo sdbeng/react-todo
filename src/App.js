@@ -143,7 +143,7 @@ class App extends Component {
     return (
       <div>
       <Router>
-        <div>
+        <div className="jsstyle-menu">
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/resume">Resume</Link></li>

@@ -50,3 +50,17 @@ li{
 .success{
   color: green;
 }
+
+.jsstyle-menu{
+  /*display: flex;*/
+  justify-content: flex-start;
+  text-transform: uppercase;
+  font-weight: bold;
+  & ul {
+    display: flex;
+    width: 100%;
+    & li {
+      flex: 1 1 100%;
+    }
+  }
+}
